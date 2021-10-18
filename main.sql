@@ -5342,3 +5342,31 @@ Ville (ID,Nom,CodePays,Circonscription,Population);
 Pays (Code,Nom,Continent,Region,Superficie,AnIndep,Population,EspeVie,NomLocal,TypeGouvernance,ChefEtat,Capitale,Code2)
 LanguePays (CodePays,Langue,EstOfficielle,Pourcentage)
 */
+
+-- Partie 1
+--1.1.1,1.1.2 -> sur papier
+--1.1.3 -> Pour une unicité de l'identification d'une occurence de "LanguePays", les attributs CodePays et Langue sont les clés primaires puisqu'une langue peut être parlé dans différents pays et un pays peut utiliser plusieurs langues.
+--1.1.4
+--select * from Pays;
+--1.1.5
+--select Nom,Code,Continent from Pays;
+--1.1.6
+--select Nom, Code, ChefEtat as TeteExecutif from Pays;
+--1.1.7
+--select CodePays from LanguePays where Langue='Français';
+--select CodePays from LanguePays where Langue='Anglais';
+--1.1.8
+--select CodePays from LanguePays where Langue='Français' or Langue='Anglais';
+--1.1.9
+--select Nom from Pays join
+--LanguePays on LanguePays.CodePays = Pays.Code
+--where Langue='Français' and EstOfficielle='T';
+--1.1.10
+--select * from Pays where EspeVie<80 and EspeVie>78;
+--1.1.11
+
+--1.1.12
+
+--1.1.13
+
+--1.1.14
