@@ -5337,36 +5337,117 @@ INSERT INTO `LanguePays` VALUES ('ZWE','Ndebele','F',16.2);
 INSERT INTO `LanguePays` VALUES ('ZWE','Nyanja','F',2.2);
 INSERT INTO `LanguePays` VALUES ('ZWE','Shona','F',72.1);
 COMMIT;
+
+/*
+-- Partie 1
+
+--1.1.1,1.1.2 -> sur papier
+
+--1.1.3 -> Pour une unicité de l'identification d'une occurence de "LanguePays", les attributs CodePays et Langue sont les clés primaires puisqu'une langue peut être parlé dans différents pays et un pays peut utiliser plusieurs langues.
+
+--1.1.4
+select * from Pays;
+
+--1.1.5
+select Nom,Code,Continent from Pays;
+
+--1.1.6
+select Nom, Code, ChefEtat as TeteExecutif from Pays;
+
+--1.1.7
+select CodePays from LanguePays where Langue='Français';
+select CodePays from LanguePays where Langue='Anglais';
+
+--1.1.8
+select CodePays from LanguePays where Langue='Français' or Langue='Anglais';
+
+--1.1.9
+select Nom from Pays join
+LanguePays on LanguePays.CodePays = Pays.Code
+where Langue='Français' and EstOfficielle='T';
+
+--1.1.10
+select * from Pays where EspeVie<80 and EspeVie>78;
+
+--1.1.11
+select Nom from Pays where Continent='Afrique' and EspeVie<50;
+
+--1.1.12
+select EspeVie,Nom,Population from Pays where (Continent='Asie' or Continent='Europe') and EspeVie>80;
+
+--1.1.13
+select Nom from Pays where TypeGouvernance like '%onarch%';
+--1.1.14
+
+select Nom from Pays where Continent='Océanie' order by EspeVie desc;
+
+--1.2.1 : l'actuel président de la République Française selon cette base de donnée est Jacques Chirac
+update Pays set ChefEtat='Emmanuel Macaron' where TypeGouvernance like '%France%';
+select ChefEtat from Pays where TypeGouvernance like '%France%';
+
+--1.2.2
+INSERT into `LanguePays` Values ('FRA','Langue de bois','F',43.1);
+
+--1.2.3
+--select * from LanguePays where CodePays='FRA';
+
+--1.2.4
+select * from LanguePays where ;
+
+--1.2.5
+--delete from LanguePays where Langue='Langue de bois';
+--select * from LanguePays where CodePays='FRA';
+*/
+
+--Partie 2
+
+--2.1 
+--select Ville.Nom,CodePays from Ville join Pays on Ville.Nom = Pays.Nom;
+
+--2.2.1 : la condition de jointure est la clé primaire 'Code' de la classe Pays qui est la clé étrangère 'CodePays' dans la classe Ville
+
+--2.2.2
+---->>>>>>>>>>>>>select Ville.Nom as NomVille, Pays.Nom as NomPays from 
+--select Ville.Nom as NomVille,Pays.Nom as NomPays from Ville join Pays on CodePays = Code;
+
+--2.2.3
+--select Ville.Nom as NomVille,Pays.Nom as NomPays from Ville join Pays on CodePays = Code and Continent='Amérique du Sud';
+
+--2.2.4
+--select Ville.Nom as NomVille,Pays.Nom as NomPays from Ville join Pays on CodePays = Code and ChefEtat='Elisabeth II';
+
+--2.2.5
+/*
+select Pays.Nom as NomPays,LanguePays.Langue as LanguePaysOfficielle from LanguePays
+join Pays on LanguePays.CodePays = Code
+where Pays.continent='Amérique du Sud' and EstOfficielle ='T' order by NomPays;
+*/
+--2.2.6
+-- La table Ville se joint a la table LanguePays avec la cle CodePays qui leur est commune. Ainsi la table Pays possede les meme Code 
+--2.2.7
+select Ville.Nom,Pays.Nom from Ville
+join Pays on Ville.CodePays = Code
+join LanguePays on LanguePays.CodePays = Code
+where LanguePays.Langue ='Français';
+
+--2.3.1
+
+--2.3.2
+
+--2.3.3
+
+--2.3.4
+
+--2.3.5
+
+--2.3.6
+
+--2.3.7
+
+--2.3.8
+
 /*
 Ville (ID,Nom,CodePays,Circonscription,Population);
 Pays (Code,Nom,Continent,Region,Superficie,AnIndep,Population,EspeVie,NomLocal,TypeGouvernance,ChefEtat,Capitale,Code2)
 LanguePays (CodePays,Langue,EstOfficielle,Pourcentage)
 */
-
--- Partie 1
---1.1.1,1.1.2 -> sur papier
---1.1.3 -> Pour une unicité de l'identification d'une occurence de "LanguePays", les attributs CodePays et Langue sont les clés primaires puisqu'une langue peut être parlé dans différents pays et un pays peut utiliser plusieurs langues.
---1.1.4
---select * from Pays;
---1.1.5
---select Nom,Code,Continent from Pays;
---1.1.6
---select Nom, Code, ChefEtat as TeteExecutif from Pays;
---1.1.7
---select CodePays from LanguePays where Langue='Français';
---select CodePays from LanguePays where Langue='Anglais';
---1.1.8
---select CodePays from LanguePays where Langue='Français' or Langue='Anglais';
---1.1.9
---select Nom from Pays join
---LanguePays on LanguePays.CodePays = Pays.Code
---where Langue='Français' and EstOfficielle='T';
---1.1.10
---select * from Pays where EspeVie<80 and EspeVie>78;
---1.1.11
-
---1.1.12
-
---1.1.13
-
---1.1.14
