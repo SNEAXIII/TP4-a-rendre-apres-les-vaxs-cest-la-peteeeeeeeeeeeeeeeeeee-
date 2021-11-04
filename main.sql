@@ -5421,7 +5421,7 @@ select * from LanguePays where ;
 select Pays.Nom as NomPays,LanguePays.Langue as LanguePaysOfficielle from LanguePays
 join Pays on LanguePays.CodePays = Code
 where Pays.continent='Amérique du Sud' and EstOfficielle ='T' order by NomPays;
-*/
+
 --2.2.6
 -- La table Ville se joint a la table LanguePays avec la cle CodePays qui leur est commune. Ainsi la table Pays possede les meme Code 
 --2.2.7
@@ -5429,23 +5429,27 @@ select Ville.Nom,Pays.Nom from Ville
 join Pays on Ville.CodePays = Code
 join LanguePays on LanguePays.CodePays = Code
 where LanguePays.Langue ='Français';
-
+*/
 --2.3.1
+select count(Nom) from Ville;
 
 --2.3.2
+select count(Nom) from Pays where Continent = 'Océanie';
 
 --2.3.3
+select count(distinct Langue) from LanguePays where EstOfficielle = 'T';
 
 --2.3.4
 
---2.3.5
 
+--2.3.5
+select sum(Population) from Pays where Continent = 'Amérique du Nord' and ChefEtat = 'Elisabeth II';
 --2.3.6
 
 --2.3.7
-
+select Nom , Max(EspeVie) from Pays;
 --2.3.8
-
+select Nom , Min(EspeVie) from Pays where continent = 'Asie';
 /*
 Ville (ID,Nom,CodePays,Circonscription,Population);
 Pays (Code,Nom,Continent,Region,Superficie,AnIndep,Population,EspeVie,NomLocal,TypeGouvernance,ChefEtat,Capitale,Code2)
